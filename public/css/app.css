@@ -63,3 +63,19 @@ body .latest-episode-title {
 body .latest-episode-title span {
   color: #F7D41F;
 }
+body .episodes-list {
+  list-style: none;
+}
+body .episodes-list li {
+  text-transform: uppercase;
+}
+body .episodes-list li a {
+  text-decoration: none;
+  color: inherit;
+}
+body .episodes-list li a:hover {
+  text-decoration: underline;
+}
+body .episodes-list li a span {
+  color: #F7D41F;
+}

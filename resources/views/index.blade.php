@@ -13,26 +13,12 @@
     </div>
 </section>
 <div class="container py-5">
-    @foreach ($latestEpisode->mixes as $mix)        
-        @php
-        $feeds[] = urlencode(str_replace("https://www.mixcloud.com", "", $mix->url));        
-        @endphp
-        @foreach ($mix->artists as $artist)
-        @php
-        $artists[] = $artist->name;        
-        @endphp
-        @endforeach
-    @endforeach
-
     <h2>Latest episode</h2>
-    <div class="latest-episode-title mb-3">
-        @php
-        $date = str_replace("-", ".", $latestEpisode->date);        
-        @endphp
-        {{ $latestEpisode->title }} - @foreach ($artists as $artist) {{ $artist }} @endforeach <span>{{ $date }}</span>
+    <div class="latest-episode-title mb-3">        
+        {{ $latestEpisode->title }} - @foreach ($latestEpisode->artists()->get() as $artist) {{ $artist->name }} @endforeach <span>{{ $latestEpisode->formatedDate }}</span>
     </div>
-    @foreach ($feeds as $feed)        
-    <iframe width="100%" height="60" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&light=1&hide_artwork=1&feed={{ $feed }}" frameborder="0" ></iframe>
+    @foreach ($latestEpisode->mixes as $mix)        
+    <iframe width="100%" height="60" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&light=1&hide_artwork=1&feed={{ urlencode(str_replace("https://www.mixcloud.com", "", $mix->url)) }}" frameborder="0" ></iframe>
     @endforeach    
 </div>
 @endsection

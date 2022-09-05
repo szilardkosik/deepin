@@ -18,4 +18,13 @@ class Episode extends Model
     {
         return $this->hasMany(Mix::class);
     }
+
+    public function artists()
+    {
+        return Artist::whereHas('mixes', fn($query) => $query->where('episode_id', $this->id));
+    }
+
+    public function getFormatedDateAttribute() {
+        return str_replace("-", ".", $this->attributes['date']);
+    }
 }
