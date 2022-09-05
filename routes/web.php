@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/episodes', [EpisodeController::class, 'index']);
+Route::get('/episodes', [EpisodeController::class, 'index'])->name('episodes.index');
 
-Route::get('/episodes/{episode}', [EpisodeController::class, 'show']);
+Route::get('/episodes/{episode}', [EpisodeController::class, 'show'])->name('episodes.show');
 
 // Admin
 // Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {

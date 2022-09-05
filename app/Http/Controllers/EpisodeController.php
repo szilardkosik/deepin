@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class EpisodeController extends Controller
 {
     public function index() {
-        return view('episodes.index');
+        $episodes = Episode::all()->sortByDesc('date');
+        return view('episodes.index', ['episodes' => $episodes]);
     }
 
     public function show(Episode $episode) {
